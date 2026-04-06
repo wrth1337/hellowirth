@@ -4,12 +4,75 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>hellowirth</title>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/ekmas/cs16.css@main/css/cs16.min.css">
 	<link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 	<div class="typewriter">
 		<p id="typewriter-text"></p>
 	</div>
+
+	<div class="dialog-shell">
+		<div class="cs-dialog">
+			<div class="heading">
+				<div class="wrapper">
+					<div class="icon"></div>
+					<p class="text">hellowirth.de</p>
+				</div>
+				<button class="cs-btn close"></button>
+			</div>
+			
+			<div class="content">
+				<div class="cs-tabs">
+					<input class="radiotab" type="radio" name="tabs" id="tab1" checked>
+					<label class="label" for="tab1">About</label>
+						<div class="panel about-panel">
+							<div class="about-grid" aria-label="Persoenliche Informationen">
+								<div class="about-label">Name:</div>
+								<div class="about-value">Benjamin Wirth</div>
+
+								<div class="about-label">Age:</div>
+								<div class="about-value">27</div>
+
+								<div class="about-label">Interests:</div>
+								<div class="about-value">Softwaredevelopment, Computer Science, Boardgames, Sport, E-Sport, <div class="cs-tooltip">Linux<span style="left: 125%" class="text">I use arch btw.</span></div>, Selfhosting</div>
+								
+								<div class="about-label">Education:</div>
+								<div class="about-value">
+									<ul class="about-list">
+										<li>Master of Science in Computer Science (TBD)</li>
+										<li>Bachelor of Science in Computer Science</li>
+										<li>Computer Science Expert <small>Subject Area: System Integration</small></li>
+									</ul>
+								</div>
+
+								<div class="about-label">Volunteer Work:</div>
+								<div class="about-value">President of the <a style="color: white" target="_blank" href="https://www.coldoak.de/">ColdOak Association</a></div>
+							</div>
+						</div>
+			
+					<input class="radiotab" type="radio" name="tabs" id="tab2">
+					<label class="label" for="tab2">Links</label>
+					<div class="panel">
+						<div class="links">
+							<a href="https://github.com/wrth1337" target="_blank" class="cs-btn">Github</a>
+							<a href="https://www.linkedin.com/in/benjamin-wirth-7a2342238/" target="_blank" class="cs-btn">LinkedIn</a>
+							<hr>
+							<a href="https://steamcommunity.com/id/B3nZ/" target="_blank" class="cs-btn">Steam</a>
+						</div>
+					</div>
+					
+			
+					<input class="radiotab" type="radio" name="tabs" id="tab3">
+					<label class="label" for="tab3">Projects</label>
+					<div class="panel projects-panel">
+						<div class="projects-grid" id="projects-grid" aria-label="Projektuebersicht"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<script src="script.js"></script>
 </body>
 </html>

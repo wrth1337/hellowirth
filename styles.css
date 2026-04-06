@@ -1,5 +1,5 @@
 :root {
-  --color-bg: hsl(240deg, 21%, 15%);
+  --color-bg: #4a5942;
   --color-surface: hsl(237deg, 16%, 23%);
 
   --color-text-primary: hsl(226deg, 64%, 88%);
@@ -13,10 +13,17 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    /* font-family: Arial, sans-serif; */
+    font-family: ArialPixel,system-ui,sans-serif;
+    font-size: large;
+    margin: 0;
     text-align: center;
     padding: 2em;
     background-color: var(--color-bg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .typewriter {
@@ -25,14 +32,179 @@ body {
 }
 
 #typewriter-text {
-    font-family: monospace;
-    font-size: 2rem;
+    /* font-family: monospace; */
+    font-size: 3rem;
     font-weight: 900;
-    border-right: 1px solid;
+    /* border-right: 1px solid; */
     white-space: nowrap;
     overflow: hidden;
     
-    background-image: linear-gradient(120deg, var(--color-peach), var(--color-mauve));
-    background-clip: text;
-    color: transparent;
+    /* background-image: linear-gradient(120deg, var(--color-peach), var(--color-mauve)); */
+    /* background-clip: text; */
+    /* color: transparent; */
+}
+
+.dialog-shell {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+
+.about-panel {
+    text-align: left;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 8px 14px;
+    align-items: start;
+}
+
+.about-label {
+    font-weight: 700;
+}
+
+.about-value {
+    min-width: 0;
+}
+
+.about-list {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.about-list li + li {
+    margin: 0;
+    margin-top: 4px;
+}
+
+.heading {
+    grid-row: 1;
+    grid-column: 1;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 6px;
+}
+
+.links {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 6px;
+    padding: 4px 0;
+}
+
+.links .cs-btn {
+    width: 100%;
+    text-align: center;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.project-card {
+    display: grid;
+    gap: 10px;
+    padding: 14px;
+    text-align: left;
+    border: 1px solid;
+    border-color: var(--border-dark) var(--border-light) var(--border-light) var(--border-dark);
+    background: rgba(0, 0, 0, 0.15);
+    min-height: 180px;
+}
+
+.project-card h2 {
+    margin: 0;
+    color: var(--color-text-primary);
+}
+
+.project-card p {
+    margin: 0;
+    color: var(--color-text-sub-1);
+    line-height: 1.4;
+}
+
+.project-card .cs-btn {
+    width: 100%;
+    align-self: end;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+}
+
+.github-icon {
+    display: inline-flex;
+    width: 16px;
+    height: 16px;
+    flex: 0 0 16px;
+}
+
+.github-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.panel {
+    overflow-y: auto;
+    padding: 10px 12px !important;
+    max-height: calc(min(90vh, 450px) - 28px - 30px);
+}
+
+.projects-panel {
+    overflow-y: visible;
+    max-height: none;
+}
+
+.cs-dialog {
+    position: relative;
+    width: min(90vw, 800px);
+    min-height: 120px;
+    display: grid;
+    grid-template-rows: 28px 1fr;
+    grid-template-columns: 1fr;
+}
+
+@media (max-width: 640px) {
+    body {
+        padding: 1rem;
+    }
+
+    #typewriter-text {
+        font-size: 2.2rem;
+        white-space: normal;
+    }
+
+    .about-grid {
+        grid-template-columns: 92px minmax(0, 1fr);
+        gap: 6px 10px;
+    }
+
+    .about-label {
+        white-space: nowrap;
+    }
+
+    .about-value {
+        overflow-wrap: anywhere;
+    }
+
+    .about-list {
+        padding-left: 18px;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dialog-shell {
+        margin-top: 0.75rem;
+    }
 }
