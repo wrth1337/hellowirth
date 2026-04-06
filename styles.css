@@ -200,6 +200,11 @@ body {
         padding-left: 18px;
     }
 
+    .about-panel {
+        overflow-y: visible;
+        max-height: none;
+    }
+
     .projects-grid {
         grid-template-columns: 1fr;
     }
