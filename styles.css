@@ -17,12 +17,13 @@ body {
     font-family: ArialPixel,system-ui,sans-serif;
     font-size: large;
     margin: 0;
-    padding: 0;
     text-align: center;
     padding: 2em;
     background-color: var(--color-bg);
     min-height: 100vh;
-    place-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .typewriter {
@@ -44,10 +45,10 @@ body {
 }
 
 .dialog-shell {
-    position: fixed;
-    inset: 0;
-    display: grid;
-    place-items: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
 }
 
 
@@ -80,8 +81,6 @@ body {
     margin-top: 4px;
 }
 
-
-/* cs1.6 stuff */
 .heading {
     grid-row: 1;
     grid-column: 1;
@@ -104,10 +103,65 @@ body {
     text-align: center;
 }
 
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.project-card {
+    display: grid;
+    gap: 10px;
+    padding: 14px;
+    text-align: left;
+    border: 1px solid;
+    border-color: var(--border-dark) var(--border-light) var(--border-light) var(--border-dark);
+    background: rgba(0, 0, 0, 0.15);
+    min-height: 180px;
+}
+
+.project-card h2 {
+    margin: 0;
+    color: var(--color-text-primary);
+}
+
+.project-card p {
+    margin: 0;
+    color: var(--color-text-sub-1);
+    line-height: 1.4;
+}
+
+.project-card .cs-btn {
+    width: 100%;
+    align-self: end;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+}
+
+.github-icon {
+    display: inline-flex;
+    width: 16px;
+    height: 16px;
+    flex: 0 0 16px;
+}
+
+.github-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
 .panel {
     overflow-y: auto;
     padding: 10px 12px !important;
     max-height: calc(min(90vh, 450px) - 28px - 30px);
+}
+
+.projects-panel {
+    overflow-y: visible;
+    max-height: none;
 }
 
 .cs-dialog {
@@ -117,4 +171,40 @@ body {
     display: grid;
     grid-template-rows: 28px 1fr;
     grid-template-columns: 1fr;
+}
+
+@media (max-width: 640px) {
+    body {
+        padding: 1rem;
+    }
+
+    #typewriter-text {
+        font-size: 2.2rem;
+        white-space: normal;
+    }
+
+    .about-grid {
+        grid-template-columns: 92px minmax(0, 1fr);
+        gap: 6px 10px;
+    }
+
+    .about-label {
+        white-space: nowrap;
+    }
+
+    .about-value {
+        overflow-wrap: anywhere;
+    }
+
+    .about-list {
+        padding-left: 18px;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dialog-shell {
+        margin-top: 0.75rem;
+    }
 }
