@@ -211,6 +211,21 @@ body {
     min-width: 92px;
 }
 
+
+.command-output {
+    display: none;
+    padding: 6px 8px;
+    color: var(--color-text-primary);
+    background: rgba(0, 0, 0, 0.28);
+    border: 1px solid;
+    border-color: var(--border-dark) var(--border-light) var(--border-light) var(--border-dark);
+    line-height: 1.35;
+}
+
+.command-output.is-visible {
+    display: block;
+}
+
 @media (max-width: 640px) {
     body {
         padding: 1rem;

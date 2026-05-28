@@ -3,6 +3,7 @@ const projectsGrid = document.getElementById("projects-grid");
 const commandToggle = document.getElementById("command-toggle");
 const commandForm = document.getElementById("command-form");
 const commandInput = document.getElementById("command-input");
+const commandOutput = document.getElementById("command-output");
 
 const COMMAND_TAB_IDS = new Map([
   ["about", "tab1"],
@@ -15,6 +16,8 @@ const COMMAND_LINKS = new Map([
   ["linkedin", "https://www.linkedin.com/in/benjamin-wirth-7a2342238/"],
   ["steam", "https://steamcommunity.com/id/B3nZ/"],
 ]);
+
+const HELP_COMMANDS = ["about", "links", "projects", "github", "linkedin", "steam", "help"];
 
 const projects = [
   {
@@ -115,19 +118,48 @@ function selectTab(tabId) {
   return true;
 }
 
+function showCommandOutput(message) {
+  if (!commandOutput) {
+    return;
+  }
+
+  commandOutput.textContent = message;
+  commandOutput.classList.add("is-visible");
+}
+
+function clearCommandOutput() {
+  if (!commandOutput) {
+    return;
+  }
+
+  commandOutput.textContent = "";
+  commandOutput.classList.remove("is-visible");
+}
+
+function showHelpCommand() {
+  showCommandOutput("Commands: " + HELP_COMMANDS.join(", "));
+  return true;
+}
+
 function openCommandLink(url) {
   window.open(url, "_blank", "noopener,noreferrer");
   return true;
 }
 
 function runCommandAction(value) {
-  const tabId = COMMAND_TAB_IDS.get(normalizeCommand(value));
+  const command = normalizeCommand(value);
+
+  if (command === "help") {
+    return showHelpCommand();
+  }
+
+  const tabId = COMMAND_TAB_IDS.get(command);
 
   if (tabId) {
     return selectTab(tabId);
   }
 
-  const linkUrl = COMMAND_LINKS.get(normalizeCommand(value));
+  const linkUrl = COMMAND_LINKS.get(command);
 
   if (linkUrl) {
     return openCommandLink(linkUrl);
@@ -157,6 +189,7 @@ function handleCommandSubmit(event) {
   }
 
   commandForm.dataset.lastCommand = value;
+  clearCommandOutput();
 
   if (!runCommandAction(value)) {
     runCommandSecret(value);
