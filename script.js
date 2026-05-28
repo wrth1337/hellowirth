@@ -88,6 +88,11 @@ function showCommandBar() {
   commandForm.setAttribute("aria-hidden", "false");
   commandInput.focus();
 }
+function runCommandSecret(value) {
+  if (window.hellowirthSecrets) {
+    window.hellowirthSecrets.run(value);
+  }
+}
 
 function handleCommandSubmit(event) {
   event.preventDefault();
@@ -104,6 +109,7 @@ function handleCommandSubmit(event) {
   }
 
   commandForm.dataset.lastCommand = value;
+  runCommandSecret(value);
   commandInput.value = "";
   commandInput.focus();
 }
