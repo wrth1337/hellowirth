@@ -10,6 +10,12 @@ const COMMAND_TAB_IDS = new Map([
   ["projects", "tab3"],
 ]);
 
+const COMMAND_LINKS = new Map([
+  ["github", "https://github.com/wrth1337"],
+  ["linkedin", "https://www.linkedin.com/in/benjamin-wirth-7a2342238/"],
+  ["steam", "https://steamcommunity.com/id/B3nZ/"],
+]);
+
 const projects = [
   {
     title: "Leansi",
@@ -109,11 +115,22 @@ function selectTab(tabId) {
   return true;
 }
 
+function openCommandLink(url) {
+  window.open(url, "_blank", "noopener,noreferrer");
+  return true;
+}
+
 function runCommandAction(value) {
   const tabId = COMMAND_TAB_IDS.get(normalizeCommand(value));
 
   if (tabId) {
     return selectTab(tabId);
+  }
+
+  const linkUrl = COMMAND_LINKS.get(normalizeCommand(value));
+
+  if (linkUrl) {
+    return openCommandLink(linkUrl);
   }
 
   return false;
