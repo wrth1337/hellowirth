@@ -1,5 +1,23 @@
 const element = document.getElementById("typewriter-text");
 const projectsGrid = document.getElementById("projects-grid");
+const commandToggle = document.getElementById("command-toggle");
+const commandForm = document.getElementById("command-form");
+const commandInput = document.getElementById("command-input");
+const commandOutput = document.getElementById("command-output");
+
+const COMMAND_TAB_IDS = new Map([
+  ["about", "tab1"],
+  ["links", "tab2"],
+  ["projects", "tab3"],
+]);
+
+const COMMAND_LINKS = new Map([
+  ["github", "https://github.com/wrth1337"],
+  ["linkedin", "https://www.linkedin.com/in/benjamin-wirth-7a2342238/"],
+  ["steam", "https://steamcommunity.com/id/B3nZ/"],
+]);
+
+const HELP_COMMANDS = ["about", "links", "projects", "github", "linkedin", "steam", "help"];
 
 const projects = [
   {
@@ -74,6 +92,118 @@ function renderProjects() {
   `);
 
   projectsGrid.innerHTML = projectCards.join("");
+}
+
+function showCommandBar() {
+  if (!commandForm || !commandInput) {
+    return;
+  }
+
+  commandForm.classList.add("is-visible");
+  commandForm.setAttribute("aria-hidden", "false");
+  commandInput.focus();
+}
+function normalizeCommand(value) {
+  return value.trim().toLowerCase();
+}
+
+function selectTab(tabId) {
+  const tab = document.getElementById(tabId);
+
+  if (!tab) {
+    return false;
+  }
+
+  tab.checked = true;
+  return true;
+}
+
+function showCommandOutput(message) {
+  if (!commandOutput) {
+    return;
+  }
+
+  commandOutput.textContent = message;
+  commandOutput.classList.add("is-visible");
+}
+
+function clearCommandOutput() {
+  if (!commandOutput) {
+    return;
+  }
+
+  commandOutput.textContent = "";
+  commandOutput.classList.remove("is-visible");
+}
+
+function showHelpCommand() {
+  showCommandOutput("Commands: " + HELP_COMMANDS.join(", "));
+  return true;
+}
+
+function openCommandLink(url) {
+  window.open(url, "_blank", "noopener,noreferrer");
+  return true;
+}
+
+function runCommandAction(value) {
+  const command = normalizeCommand(value);
+
+  if (command === "help") {
+    return showHelpCommand();
+  }
+
+  const tabId = COMMAND_TAB_IDS.get(command);
+
+  if (tabId) {
+    return selectTab(tabId);
+  }
+
+  const linkUrl = COMMAND_LINKS.get(command);
+
+  if (linkUrl) {
+    return openCommandLink(linkUrl);
+  }
+
+  return false;
+}
+
+function runCommandSecret(value) {
+  if (window.hellowirthSecrets) {
+    window.hellowirthSecrets.run(value);
+  }
+}
+
+function handleCommandSubmit(event) {
+  event.preventDefault();
+
+  if (!commandForm || !commandInput) {
+    return;
+  }
+
+  const value = commandInput.value.trim();
+
+  if (!value) {
+    commandInput.focus();
+    return;
+  }
+
+  commandForm.dataset.lastCommand = value;
+  clearCommandOutput();
+
+  if (!runCommandAction(value)) {
+    runCommandSecret(value);
+  }
+  commandInput.value = "";
+  commandInput.focus();
+}
+
+if (commandToggle) {
+  commandToggle.addEventListener("click", showCommandBar);
+}
+
+if (commandForm) {
+  commandForm.addEventListener("submit", handleCommandSubmit);
 }
 
 renderProjects();

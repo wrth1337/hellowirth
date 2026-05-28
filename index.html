@@ -19,7 +19,7 @@
 					<div class="icon"></div>
 					<p class="text">hellowirth.de</p>
 				</div>
-				<button class="cs-btn close"></button>
+				<button class="cs-btn close" id="command-toggle" type="button" aria-label="Eingabe oeffnen"></button>
 			</div>
 			
 			<div class="content">
@@ -73,6 +73,20 @@
 		</div>
 	</div>
 
+
+	<form class="command-bar" id="command-form" aria-hidden="true">
+		<label class="command-label cs-input__label" for="command-input">Command</label>
+		<div class="command-row">
+			<input class="cs-input" id="command-input" type="text" autocomplete="off" />
+			<button class="cs-btn" type="submit">Send</button>
+		</div>
+		<output class="command-output" id="command-output" aria-live="polite"></output>
+	</form>
+
+	<script src="secrets/registry.js"></script>
+	<script src="secrets/angine-de-poitrine.js"></script>
+	<script src="secrets/counter-strike.js"></script>
+	<script src="secrets/landmvrks.js"></script>
 	<script src="script.js"></script>
 </body>
 </html>

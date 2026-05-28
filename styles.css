@@ -173,6 +173,59 @@ body {
     grid-template-columns: 1fr;
 }
 
+
+.command-bar {
+    position: fixed;
+    left: 50%;
+    bottom: max(16px, env(safe-area-inset-bottom));
+    z-index: 10;
+    width: min(92vw, 640px);
+    display: grid;
+    gap: 6px;
+    text-align: left;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, 18px);
+    transition: opacity 120ms ease, transform 120ms ease;
+}
+
+.command-bar.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, 0);
+}
+
+.command-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px;
+    align-items: center;
+}
+
+.command-row .cs-input {
+    width: 100%;
+    min-width: 0;
+}
+
+.command-row .cs-btn {
+    min-width: 92px;
+}
+
+
+.command-output {
+    display: none;
+    padding: 6px 8px;
+    color: var(--color-text-primary);
+    background: rgba(0, 0, 0, 0.28);
+    border: 1px solid;
+    border-color: var(--border-dark) var(--border-light) var(--border-light) var(--border-dark);
+    line-height: 1.35;
+}
+
+.command-output.is-visible {
+    display: block;
+}
+
 @media (max-width: 640px) {
     body {
         padding: 1rem;
