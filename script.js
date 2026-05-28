@@ -1,5 +1,8 @@
 const element = document.getElementById("typewriter-text");
 const projectsGrid = document.getElementById("projects-grid");
+const commandToggle = document.getElementById("command-toggle");
+const commandForm = document.getElementById("command-form");
+const commandInput = document.getElementById("command-input");
 
 const projects = [
   {
@@ -74,6 +77,43 @@ function renderProjects() {
   `);
 
   projectsGrid.innerHTML = projectCards.join("");
+}
+
+function showCommandBar() {
+  if (!commandForm || !commandInput) {
+    return;
+  }
+
+  commandForm.classList.add("is-visible");
+  commandForm.setAttribute("aria-hidden", "false");
+  commandInput.focus();
+}
+
+function handleCommandSubmit(event) {
+  event.preventDefault();
+
+  if (!commandForm || !commandInput) {
+    return;
+  }
+
+  const value = commandInput.value.trim();
+
+  if (!value) {
+    commandInput.focus();
+    return;
+  }
+
+  commandForm.dataset.lastCommand = value;
+  commandInput.value = "";
+  commandInput.focus();
+}
+
+if (commandToggle) {
+  commandToggle.addEventListener("click", showCommandBar);
+}
+
+if (commandForm) {
+  commandForm.addEventListener("submit", handleCommandSubmit);
 }
 
 renderProjects();
