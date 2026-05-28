@@ -4,6 +4,12 @@ const commandToggle = document.getElementById("command-toggle");
 const commandForm = document.getElementById("command-form");
 const commandInput = document.getElementById("command-input");
 
+const COMMAND_TAB_IDS = new Map([
+  ["about", "tab1"],
+  ["links", "tab2"],
+  ["projects", "tab3"],
+]);
+
 const projects = [
   {
     title: "Leansi",
@@ -88,6 +94,31 @@ function showCommandBar() {
   commandForm.setAttribute("aria-hidden", "false");
   commandInput.focus();
 }
+function normalizeCommand(value) {
+  return value.trim().toLowerCase();
+}
+
+function selectTab(tabId) {
+  const tab = document.getElementById(tabId);
+
+  if (!tab) {
+    return false;
+  }
+
+  tab.checked = true;
+  return true;
+}
+
+function runCommandAction(value) {
+  const tabId = COMMAND_TAB_IDS.get(normalizeCommand(value));
+
+  if (tabId) {
+    return selectTab(tabId);
+  }
+
+  return false;
+}
+
 function runCommandSecret(value) {
   if (window.hellowirthSecrets) {
     window.hellowirthSecrets.run(value);
@@ -109,7 +140,10 @@ function handleCommandSubmit(event) {
   }
 
   commandForm.dataset.lastCommand = value;
-  runCommandSecret(value);
+
+  if (!runCommandAction(value)) {
+    runCommandSecret(value);
+  }
   commandInput.value = "";
   commandInput.focus();
 }
