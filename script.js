@@ -36,9 +36,9 @@ const projects = [
     githubUrl: "https://github.com/wrth1337/RX",
   },
   {
-    title: "Event-Blocks",
-    description: "WordPress plugin for managing events and displaying customizable event cards via shortcode. ",
-    githubUrl: "https://github.com/wrth1337/Event-Blocks",
+    title: "MeepleManager",
+    description: "WordPress plugin for managing club events and board-game lending. ",
+    githubUrl: "https://github.com/wrth1337/MeepleManager",
   },
 ];
 
